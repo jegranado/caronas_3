@@ -585,45 +585,9 @@ label:empty {
     min-height: 100px;
   }
 }
-.uib_row_15:not(.cright) > .col {
-  padding-right: 20px;
-}
-.uib_row_15.cright > .col {
-  padding-left: 20px;
-}
-@media all {
-  .col-0_12-12 {
-    width: auto;
-    float: none !important;
-  }
-  .urow:not(.cright) > .col-0_12-12 {
-    padding-right: 0px !important;
-  }
-  .urow.cright > .col-0_12-12 {
-    padding-left: 0px !important;
-  }
-}
 @media all and (min-width: 320px) {
   .row-height-15 > .col > .content-area {
     min-height: 100px;
-  }
-}
-.uib_row_16:not(.cright) > .col {
-  padding-right: 20px;
-}
-.uib_row_16.cright > .col {
-  padding-left: 20px;
-}
-@media all {
-  .col-0_12-12 {
-    width: auto;
-    float: none !important;
-  }
-  .urow:not(.cright) > .col-0_12-12 {
-    padding-right: 0px !important;
-  }
-  .urow.cright > .col-0_12-12 {
-    padding-left: 0px !important;
   }
 }
 @media all and (min-width: 320px) {
@@ -748,6 +712,75 @@ label:empty {
 }
 @media all and (min-width: 320px) {
   .row-height-22 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+.uib_row_23:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_23.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-23 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+.uib_row_24:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_24.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-24 > .col > .content-area {
+    min-height: 30px;
+  }
+}
+.uib_row_25:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_25.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-25 > .col > .content-area {
     min-height: 100px;
   }
 }
