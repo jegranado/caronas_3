@@ -4,7 +4,7 @@
 
 	<head>
 		<link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
-		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" class="uib-framework-theme">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
 		<title>Your New Application</title>
@@ -31,9 +31,7 @@
 		<script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="application/javascript" src="js/index_user_scripts.js"></script>
 		<script type="application/javascript" src="js/bs_subpage.js"></script>
-		<script type="application/javascript" src="justgage/js/raphael.min.js"></script>
-		<script type="application/javascript" src="justgage/js/justgage.min.js"></script>
-		<script type="application/javascript" src="justgage/gauges.js"></script>
+		<script src="http://debug-software.intel.com/target/target-script-min.js#Tu6v8qD4WmoR8ElejDjiBWC8ZLcuHO6r6gXzhTqRSYA"></script>
 	</head>
 
 	<body>
@@ -87,6 +85,71 @@
 				<!-- /upage-outer -->
 
 			</div>
+			<div class="upage hidden" id="cadastro">
+				<div class="upage-outer">
+					<div class="uib-header header-bg container-group inner-element uib_w_11 uib-header-fixed" data-uib="layout/header" data-ver="0">
+						<h2>Cadastro</h2>
+						<div class="widget-container wrapping-col single-centered"></div>
+						<div class="widget-container content-area horiz-area wrapping-col left">
+							<button type="button" class="btn widget uib_w_12 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-chevron-left" data-position="icon only"></i>
+							</button>
+						</div>
+						<div class="widget-container content-area horiz-area wrapping-col right"></div>
+					</div>
+					<div id="cadastrosub" class="upage-content ">
+
+						<div class="grid grid-pad urow uib_row_21 row-height-21" data-uib="layout/row" data-ver="0">
+
+							<span class="uib_shim"></span>
+							<div class="col uib_col_34 col-0" data-uib="layout/col" data-ver="0">
+								<div class="widget-container content-area vertical-col">
+									<span class="uib_shim"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="grid grid-pad urow uib_row_22 row-height-22" data-uib="layout/row" data-ver="0">
+
+							<div class="col uib_col_32 col-0" data-uib="layout/col" data-ver="0">
+								<div class="widget-container content-area vertical-col">
+									<form class="grid grid-pad urow uib_row_19 row-height-19" data-uib="layout/row" data-ver="0">
+										<div class="col uib_col_30 col-0_12-12" data-uib="layout/col" data-ver="0">
+											<div class="widget-container content-area vertical-col center">
+
+												<div class="table-thing widget uib_w_13 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
+													<label class="narrow-control label-top-left">Nome</label>
+													<input class="wide-control form-control" type="text" placeholder="João da Silva">
+												</div>
+												<div class="table-thing widget uib_w_14 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
+													<label class="narrow-control label-top-left">Email</label>
+													<input class="wide-control form-control" type="email" placeholder="joao.silva@unifesp.br">
+												</div>
+												<div class="table-thing widget uib_w_15 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
+													<label class="narrow-control label-top-left">Telefone Celular</label>
+													<input class="wide-control form-control" type="tel" placeholder="12991239456">
+												</div>
+												<div class="table-thing widget uib_w_16 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
+													<label class="narrow-control label-top-left">Senha</label>
+													<input class="wide-control form-control" type="password">
+												</div>
+												<div class="table-thing widget uib_w_17 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
+													<label class="narrow-control label-top-left">Confirmar Senha</label>
+													<input class="wide-control form-control" type="password">
+												</div>
+												<button type="button" class="btn widget uib_w_19 d-margins btn-success" data-uib="twitter%20bootstrap/button" data-ver="0">Cadastrar<i class="glyphicon glyphicon-ok button-icon-right" data-position="right"></i>
+												</button>
+												<span class="uib_shim"></span>
+											</div>
+										</div>
+										<span class="uib_shim"></span>
+									</form><span class="uib_shim"></span>
+								</div>
+							</div><span class="uib_shim"></span>
+						</div>
+					</div>
+				</div>
+				<!-- /upage-outer -->
+			</div>
 			<div class="upage hidden" id="quero_carona">
 				<div class="upage-outer">
 					<div class="uib-header container-group inner-element uib_w_7 header-bg" data-uib="layout/header" data-ver="0">
@@ -107,7 +170,14 @@
 						<div class="grid grid-pad urow uib_row_18 row-height-18" data-uib="layout/row" data-ver="0">
 							<div class="col uib_col_28 col-0_12-12" data-uib="layout/col" data-ver="0">
 								<div class="widget-container content-area vertical-col">
-									<span class="uib_shim"></span>
+
+									<div class="widget uib_w_10 d-margins" data-uib="media/text" data-ver="0" id="container_caronas">
+										<div class="widget-container left-receptacle"></div>
+										<div class="widget-container right-receptacle"></div>
+										<div>
+											<p>carregando caronas...</p>
+										</div>
+									</div><span class="uib_shim"></span>
 								</div>
 							</div>
 							<span class="uib_shim"></span>
@@ -118,6 +188,15 @@
 			</div>
 			<div class="upage hidden" id="tipo">
 				<div class="upage-outer">
+					<div class="uib-header header-bg container-group inner-element uib_w_20 uib-header-fixed" data-uib="layout/header" data-ver="0">
+						<h2></h2>
+						<div class="widget-container wrapping-col single-centered"></div>
+						<div class="widget-container content-area horiz-area wrapping-col left"></div>
+						<div class="widget-container content-area horiz-area wrapping-col right">
+							<button type="button" class="btn widget uib_w_21 d-margins btn-danger" data-uib="twitter%20bootstrap/button" data-ver="0" id="btn_sair">Sair<i class="glyphicon glyphicon-share button-icon-right" data-position="right"></i>
+							</button>
+						</div>
+					</div>
 					<div id="tiposub" class="upage-content ">
 
 						<div class="grid grid-pad urow uib_row_15 row-height-15" data-uib="layout/row" data-ver="0">
