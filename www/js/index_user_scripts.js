@@ -8,6 +8,9 @@
  {
          $(document).on("click", ".uib_w_3", function(evt)
         {
+        $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/teste.asp"}).done(function( data ) {
+            alert(data);
+        });	 
          intel.xdk.cache.setCookie("cookieuser",333,15);
          activate_page("#tipo"); 
         });
@@ -81,6 +84,16 @@
                 getMinhasCaronas(cookieuser);
             intel.xdk.notification.hideBusyIndicator();
         });
+        $(document).on("click", "#btnoferecece", function(evt)
+        {
+            var de=document.getElementById("txtde").value;
+            var para=document.getElementById("txtpara").value;
+            var info=document.getElementById("txtinfo").value;
+            var hora=document.getElementById("txthora").value;
+            intel.xdk.notification.showBusyIndicator();
+                oferececarona(cookieuser,de,para,info,hora);
+            intel.xdk.notification.hideBusyIndicator();
+        });
 }
  $(document).ready(register_event_handlers);
 })();
@@ -96,3 +109,6 @@ function getMinhasCaronas(user){
             document.getElementById("div_minhas_caronas").innerHTML=data;
         });	                       
     }
+
+function oferececarona(user,de,para,info,hora){
+		$.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora});	           }

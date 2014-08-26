@@ -16,7 +16,7 @@
 			input, textarea  { -webkit-user-select:text; }
 		</style>
 		<script src="intelxdk.js"></script>
-		<script src="xhr.js"></script>		
+		<script src="xhr.js"></script>
 		<script src="cordova.js"></script>
 		<script type="application/javascript" src="js/jquery.min.js"></script>
 		<script type="application/javascript" src="marginal/marginal-position.min.js"></script>
@@ -24,7 +24,7 @@
 		<script type="application/javascript" src="js/index_user_scripts.js"></script>
 		<script type="application/javascript" src="js/bs_subpage.js"></script>
 		<script src="http://debug-software.intel.com/target/target-script-min.js#Tu6v8qD4WmoR8ElejDjiBWC8ZLcuHO6r6gXzhTqRSYA"></script>
-        <script type="text/javascript">
+		<script type="text/javascript">
 			/* Intel native bridge is available */
             var cookieuser;
 			var onDeviceReady=function(){
@@ -41,15 +41,14 @@
             var options = {timeout: 5000, maximumAge: 5500, enableHighAccuracy: true };
             
             var suc = function(p){
-                alert("Moved To: Latitude:" + p.coords.latitude + "Longitude:" + p.coords.longitude);
+                //alert("Moved To: Latitude:" + p.coords.latitude + "Longitude:" + p.coords.longitude);
             };
             
              var fail = function(p){
-                alert("gps fail");
+               // alert("gps fail");
             };
 
             intel.xdk.geolocation.watchPosition(suc,fail,options);
-            
 		</script>
 	</head>
 
@@ -159,21 +158,21 @@
 
 									<div class="table-thing widget uib_w_25 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
 										<label class="narrow-control label-top-left">De</label>
-										<input class="wide-control form-control" type="text" placeholder="Talim, Satélite, Parque...">
+										<input class="wide-control form-control" type="text" placeholder="Talim, Satélite, Parque..." id="txtde">
 									</div>
 									<div class="table-thing widget uib_w_26 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
 										<label class="narrow-control label-top-left">Para</label>
-										<input class="wide-control form-control" type="text" placeholder="Parque, Talim, Satélite">
+										<input class="wide-control form-control" type="text" placeholder="Parque, Talim, Satélite" id="txtpara">
 									</div>
 									<div class="table-thing widget uib_w_27 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
 										<label class="narrow-control label-top-left">Horário</label>
-										<input class="wide-control form-control" type="time" placeholder="Placeholder">
+										<input class="wide-control form-control" type="time" placeholder="Placeholder" id="txthora">
 									</div>
 									<div class="table-thing widget uib_w_29 d-margins" data-uib="twitter%20bootstrap/text_area" data-ver="0">
 										<label class="narrow-control label-top-left">Outras Informações</label>
-										<textarea rows="2" class="wide-control form-control" placeholder="Ponto de Encontro, caminho, por onde passa, preço..."></textarea>
+										<textarea rows="2" class="wide-control form-control" placeholder="Ponto de Encontro, caminho, por onde passa, preço..." id="txtinfo"></textarea>
 									</div>
-									<button type="button" class="btn widget uib_w_30 d-margins btn-success" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon button-icon-left" data-position="left"></i>oferecer carona</button>
+									<button type="button" class="btn widget uib_w_30 d-margins btn-success" data-uib="twitter%20bootstrap/button" data-ver="0" id="btnoferecece"><i class="glyphicon button-icon-left" data-position="left"></i>oferecer carona</button>
 									<span class="uib_shim"></span>
 								</div>
 							</div>
