@@ -9,7 +9,7 @@
          $(document).on("click", ".uib_w_3", function(evt)
         {
         $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/teste.asp"}).done(function( data ) {
-            alert(data);
+          // alert(data);
         });	 
          intel.xdk.cache.setCookie("cookieuser",333,15);
          activate_page("#tipo"); 
@@ -88,10 +88,22 @@
         {
             var de=document.getElementById("txtde").value;
             var para=document.getElementById("txtpara").value;
-            var info=document.getElementById("txtinfo").value;
-            var hora=document.getElementById("txthora").value;
+            var info=document.getElementById("txtinfo_2").value;
+            var hora=document.getElementById("txthora").value+':00';
             intel.xdk.notification.showBusyIndicator();
+                //alert(de+para+info+hora);
                 oferececarona(cookieuser,de,para,info,hora);
+            intel.xdk.notification.hideBusyIndicator();
+            
+            document.getElementById("txtde").value="";
+            document.getElementById("txtpara").value="";
+            document.getElementById("txtinfo_2").value="";
+            document.getElementById("txthora").value="";
+            
+            
+            activate_subpage("#minhascaronassub"); 
+            intel.xdk.notification.showBusyIndicator();
+                getMinhasCaronas(cookieuser);
             intel.xdk.notification.hideBusyIndicator();
         });
 }
@@ -99,7 +111,7 @@
 })();
 
 	function getCaronas(){
-		$.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
+		$.ajax({crossDomain: true,cache: false,contentType:"text/html", url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
             document.getElementById("container_caronas").innerHTML=data;
         });	                       
     }
@@ -111,4 +123,7 @@ function getMinhasCaronas(user){
     }
 
 function oferececarona(user,de,para,info,hora){
-		$.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora});	           }
+    var uurl= "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora;
+   // alert(uurl);
+    $.ajax({url:uurl});
+}
