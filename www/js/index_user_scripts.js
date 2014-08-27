@@ -111,12 +111,12 @@
 })();
 
 	function getCaronas(){
-		$.ajax({crossDomain: true,cache: false,contentType:"text/html", url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
+		/*$.ajax({crossDomain: true,cache: false,contentType:"text/html", url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
             alert(data+'');
             document.getElementById("container_caronas").innerHTML=data;
         });	
         
-        /*
+        
         var getRemoteDataEvent=function(event)
         {
                 if(event.success==false)
@@ -137,6 +137,15 @@
         */
         
        // $( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp" );
+        
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                alert(xhr.responseText);
+            }
+        }
+        xhr.open("GET", "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp", true);
+        xhr.send(null);
         
     }
 
