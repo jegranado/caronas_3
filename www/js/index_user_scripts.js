@@ -112,8 +112,32 @@
 
 	function getCaronas(){
 		$.ajax({crossDomain: true,cache: false,contentType:"text/html", url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
+            alert(data+'');
             document.getElementById("container_caronas").innerHTML=data;
-        });	                       
+        });	
+        
+        /*
+        var getRemoteDataEvent=function(event)
+        {
+                if(event.success==false)
+                   {
+                      alert("error obtaining remote data");
+                   }
+                else
+                   {
+                      alert("success: " + event.response);
+                   }
+        }
+        document.addEventListener("intel.xdk.device.remote.data",getRemoteDataEvent,false);
+        
+        var parameters = new intel.xdk.Device.RemoteDataParameters();
+        parameters.url = "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp";        
+
+        intel.xdk.device.getRemoteDataExt(parameters);        
+        */
+        
+       // $( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp" );
+        
     }
 
 function getMinhasCaronas(user){

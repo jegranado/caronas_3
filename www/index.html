@@ -38,17 +38,7 @@
             
 			document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
             
-            var options = {timeout: 5000, maximumAge: 5500, enableHighAccuracy: true };
-            
-            var suc = function(p){
-                //alert("Moved To: Latitude:" + p.coords.latitude + "Longitude:" + p.coords.longitude);
-            };
-            
-             var fail = function(p){
-               // alert("gps fail");
-            };
-
-            intel.xdk.geolocation.watchPosition(suc,fail,options);
+          );
 		</script>
 	</head>
 
