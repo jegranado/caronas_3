@@ -30,16 +30,15 @@
 			var onDeviceReady=function(){
 			//hide splash screen
 			intel.xdk.device.hideSplashScreen();
-            cookieuser=intel.xdk.cache.getCookie("cookieuser")
+            cookieuser=intel.xdk.cache.getCookie("cookieuser");
                 if(cookieuser){
                     activate_subpage("#tiposub");   
                 }                
 			};
             
 			document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
-            
-          );
 		</script>
+		<script type="application/javascript" src="xdk/appdesigner/js/rest-of-space.js"></script>
 	</head>
 
 	<body>
@@ -51,8 +50,14 @@
 
 						<div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
 							<div class="col uib_col_1 col-0_12-12" data-uib="layout/col" data-ver="0">
-								<div class="widget-container content-area vertical-col">
-									<span class="uib_shim"></span>
+								<div class="widget-container content-area vertical-col center">
+
+									<div class="widget uib_w_37 scale-image d-margins" data-uib="media/img" data-ver="0">
+										<figure class="figure-align">
+											<img src="logo.png">
+											<figcaption data-position="bottom"></figcaption>
+										</figure>
+									</div><span class="uib_shim"></span>
 								</div>
 							</div>
 							<span class="uib_shim"></span>
@@ -63,12 +68,12 @@
 								<div class="widget-container content-area vertical-col center">
 
 									<div class="table-thing widget uib_w_1 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
-										<label class="narrow-control"></label>
-										<input class="wide-control form-control" type="text" placeholder="Login">
+										<label class="narrow-control" for="txtemail"></label>
+										<input class="wide-control form-control" type="text" placeholder="Email" id="txtemail">
 									</div>
 									<div class="table-thing widget uib_w_2 d-margins" data-uib="twitter%20bootstrap/input" data-ver="0">
-										<label class="narrow-control"></label>
-										<input class="wide-control form-control" type="password" placeholder="Senha">
+										<label class="narrow-control" for="txtsenha"></label>
+										<input class="wide-control form-control" type="password" placeholder="Senha" id="txtsenha">
 									</div>
 									<button type="button" class="btn widget uib_w_3 d-margins btn-lg btn-success" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-user button-icon-top" data-position="top"></i>Login</button>
 									<button type="button" class="btn widget uib_w_4 d-margins btn-lg btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon button-icon-left" data-position="left"></i>Cadastrar</button>
@@ -92,6 +97,79 @@
 				</div>
 				<!-- /upage-outer -->
 
+			</div>
+			<div class="upage hidden" id="chat">
+				<div class="upage-outer">
+					<div class="uib-header header-bg container-group inner-element uib_w_42 uib-header-fixed" data-uib="layout/header" data-ver="0">
+						<h2></h2>
+						<div class="widget-container wrapping-col single-centered"></div>
+						<div class="widget-container content-area horiz-area wrapping-col left">
+
+							<button type="button" class="btn widget uib_w_45 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-chevron-left" data-position="icon only"></i>
+							</button>
+						</div>
+						<div class="widget-container content-area horiz-area wrapping-col right"></div>
+					</div>
+
+					<div id="chatsub" class="upage-content ">
+
+						<div class="grid grid-pad urow uib_row_27 row-height-27 rest-of-height" data-uib="layout/row" data-ver="0">
+							<div class="col uib_col_41 col-0_12-12" data-uib="layout/col" data-ver="0">
+								<div class="widget-container content-area vertical-col">
+
+									<div class="grid grid-pad urow uib_row_28 row-height-28" data-uib="layout/row" data-ver="0">
+										<div class="col uib_col_42 col-1_12-12" data-uib="layout/col" data-ver="0">
+											<div class="widget-container content-area vertical-col">
+												<span class="uib_shim"></span>
+											</div>
+										</div>
+										<span class="uib_shim"></span>
+									</div>
+									<div class="widget uib_w_44 d-margins" data-uib="media/text" data-ver="0" id="txt_chat">
+										<div class="widget-container left-receptacle"></div>
+										<div class="widget-container right-receptacle"></div>
+										<div>
+											<p>carregando mensagens...</p>
+										</div>
+									</div><span class="uib_shim"></span>
+								</div>
+							</div>
+							<span class="uib_shim"></span>
+						</div>
+
+						<div class="grid grid-pad urow uib_row_29 row-height-29" data-uib="layout/row" data-ver="0">
+							<div class="col uib_col_43 col-0_12-12" data-uib="layout/col" data-ver="0">
+								<div class="widget-container content-area vertical-col">
+
+									<div class="widget uib_w_46 d-margins" data-uib="media/text" data-ver="0" id="bottomom">
+										<div class="widget-container left-receptacle"></div>
+										<div class="widget-container right-receptacle"></div>
+										<div>
+											<p>&nbsp;</p>
+										</div>
+									</div><span class="uib_shim"></span>
+								</div>
+							</div>
+							<span class="uib_shim"></span>
+						</div>
+					</div>
+                    <a name="bottomom"></a>
+					<div class="uib-footer uib-footer-fixed footer-bg container-group inner-element uib_w_39 footer-chat" data-uib="layout/footer" data-ver="0">
+						<h2></h2>
+						<div class="widget-container wrapping-col single-centered">
+							<div class="table-thing widget uib_w_40 d-margins width_chat_txt" data-uib="twitter%20bootstrap/text_area" data-ver="0">
+								<label class="narrow-control"></label>
+								<textarea rows="1" class="wide-control form-control" wrap="soft" id="txtchat"></textarea>
+							</div>
+						</div>
+						<div class="widget-container content-area horiz-area wrapping-col left"></div>
+						<div class="widget-container content-area horiz-area wrapping-col right">
+							<button type="button" class="btn widget uib_w_41 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-chevron-up" data-position="icon only"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- /upage-outer -->
 			</div>
 			<div class="upage hidden" id="minhascaronas">
 				<div class="upage-outer">

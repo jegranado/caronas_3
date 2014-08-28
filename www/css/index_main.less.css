@@ -458,7 +458,7 @@ label:empty {
 }
 @media all {
   .footer-bg {
-    background-color: rgba(0, 128, 0, 0.54);
+    background-color: #008000;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -782,5 +782,113 @@ label:empty {
 @media all and (min-width: 320px) {
   .row-height-25 > .col > .content-area {
     min-height: 100px;
+  }
+}
+.figure-align {
+  display: table;
+  margin: 0px auto;
+}
+.figure-align img {
+  width: 100%;
+}
+.image-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+@media all {
+  .scale-image {
+    width: 200px;
+  }
+}
+@media all {
+  .footer-chat {
+    height: 90px;
+  }
+}
+@media all {
+  .width_chat_txt,
+  .table-thing.width_chat_txt {
+    width: 200px;
+  }
+  .width_chat_txt,
+  .table-thing.width_chat_txt {
+    width: 200px;
+  }
+  .width_chat_txt > .narrow-control {
+    text-align: left;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-26 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+.uib_row_27:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_27.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-27 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+.uib_row_28:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_28.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-1_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-1_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-1_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-28 > .col > .content-area {
+    min-height: 35px;
+  }
+}
+.uib_row_29:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_29.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-29 > .col > .content-area {
+    min-height: 50px;
   }
 }

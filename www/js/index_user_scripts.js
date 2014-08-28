@@ -1,3 +1,6 @@
+var cookieuser;
+var activecarona;
+var timeout;
 (function()
 {
  "use strict";
@@ -8,11 +11,22 @@
  {
          $(document).on("click", ".uib_w_3", function(evt)
         {
-        $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/teste.asp"}).done(function( data ) {
-          // alert(data);
-        });	 
-         intel.xdk.cache.setCookie("cookieuser",333,15);
-         activate_page("#tipo"); 
+         var email=document.getElementById("txtemail").value;
+         var pwd=document.getElementById("txtsenha").value;         
+        
+        $.ajax({url: "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/login.asp?u="+email+"&p="+pwd,cache: false}).done(function(html){
+            if(html=='nok'){
+                alert("usuário ou senha inválidos");                
+                document.getElementById("txtsenha").value="";         
+            }else{
+                intel.xdk.cache.setCookie("cookieuser",html,15);
+                cookieuser=intel.xdk.cache.getCookie("cookieuser");        
+                document.getElementById("txtemail").value="";
+                document.getElementById("txtsenha").value="";         
+                activate_page("#tipo");                 
+            }        
+        });
+            
         });
         $(document).on("click", ".uib_w_5", function(evt)
         {
@@ -106,57 +120,48 @@
                 getMinhasCaronas(cookieuser);
             intel.xdk.notification.hideBusyIndicator();
         });
+        
+        $(document).on("click", ".uib_w_45", function(evt)
+        {
+         clearInterval(timeout);
+         activate_page("#tipo"); 
+        });
+        $(document).on("click", ".uib_w_41", function(evt)
+        {
+            postchat(document.getElementById("txtchat").value);
+        });
 }
  $(document).ready(register_event_handlers);
 })();
 
 	function getCaronas(){
-		/*$.ajax({crossDomain: true,cache: false,contentType:"text/html", url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp"}).done(function( data ) {
-            alert(data+'');
-            document.getElementById("container_caronas").innerHTML=data;
-        });	
-        
-        
-        var getRemoteDataEvent=function(event)
-        {
-                if(event.success==false)
-                   {
-                      alert("error obtaining remote data");
-                   }
-                else
-                   {
-                      alert("success: " + event.response);
-                   }
-        }
-        document.addEventListener("intel.xdk.device.remote.data",getRemoteDataEvent,false);
-        
-        var parameters = new intel.xdk.Device.RemoteDataParameters();
-        parameters.url = "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp";        
-
-        intel.xdk.device.getRemoteDataExt(parameters);        
-        */
-        
-       // $( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp" );
-        
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                alert(xhr.responseText);
-            }
-        }
-        xhr.open("GET", "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas.asp", true);
-        xhr.send(null);
-        
+		$( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas_2.asp" );      
+        //$( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/teste.asp" );      
     }
 
-function getMinhasCaronas(user){
-		$.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getminhascaronas.asp?u="+user}).done(function( data ) {
-            document.getElementById("div_minhas_caronas").innerHTML=data;
-        });	                       
+function getMinhasCaronas(user){		
+        $( "#div_minhas_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getminhascaronas_2.asp?u="+user);      
     }
 
-function oferececarona(user,de,para,info,hora){
-    var uurl= "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora;
-   // alert(uurl);
-    $.ajax({url:uurl});
+function oferececarona(user,de,para,info,hora){        
+    $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona_2.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora,cache: false}).done(function(html){
+            //alert(html);        
+        });
+    
+}
+
+function openchat(carona){
+    activecarona=carona;    
+    timeout = setInterval(function(){
+        $( "#txt_chat" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/chat.asp?c="+carona+"&u="+cookieuser); 
+        location.href='#bottomom';
+    }, 1500);
+    activate_subpage("#chatsub");
+}
+
+function postchat(msg){
+        alert("http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat.asp?u="+cookieuser+"&c="+activecarona+"&msg="+msg);
+       $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat.asp?u="+cookieuser+"&c="+activecarona+"&msg="+msg,cache: false}).done(function(html){
+            //alert(html);        
+        });
 }
