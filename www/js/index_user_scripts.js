@@ -193,3 +193,7 @@ function applycarona(carona){
         },3000);
     intel.xdk.notification.hideBusyIndicator();
 }
+
+function map(carona){
+        activate_subpage("#mapsub");
+}
