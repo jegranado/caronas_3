@@ -1,6 +1,7 @@
 var cookieuser;
 var activecarona;
 var timeout;
+var sizechat=0;
 (function()
 {
  "use strict";
@@ -125,17 +126,22 @@ var timeout;
         {
          clearInterval(timeout);
          activate_page("#tipo"); 
+         sizechat=0;
         });
         $(document).on("click", ".uib_w_41", function(evt)
         {
             postchat(document.getElementById("txtchat").value);
         });
+        $(document).on("click", ".uib_w_48", function(evt)
+        {
+         activate_subpage("#minhascaronassub"); 
+        });
 }
  $(document).ready(register_event_handlers);
 })();
 
-	function getCaronas(){
-		$( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas_2.asp" );      
+	function getCaronas(){        
+		$( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getcaronas_2.asp?u="+cookieuser );      
         //$( "#container_caronas" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/teste.asp" );      
     }
 
@@ -144,7 +150,8 @@ function getMinhasCaronas(user){
     }
 
 function oferececarona(user,de,para,info,hora){        
-    $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona_2.asp?u="+user+"&i="+info+"&d="+de+"&p="+para+"&h="+hora,cache: false}).done(function(html){
+    var data={u:user,i:info,d:de,p:para,h:hora};
+    $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/oferececarona_2.asp",type: "POST",data:data,cache: false}).done(function(html){
             //alert(html);        
         });
     
@@ -152,16 +159,37 @@ function oferececarona(user,de,para,info,hora){
 
 function openchat(carona){
     activecarona=carona;    
+    $( "#txt_chat" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/chat.asp?c="+carona+"&u="+cookieuser);
+    location.href='#bottomom';
     timeout = setInterval(function(){
-        $( "#txt_chat" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/chat.asp?c="+carona+"&u="+cookieuser); 
-        location.href='#bottomom';
+        intel.xdk.notification.showBusyIndicator();
+        $( "#txt_chat" ).load( "http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/chat.asp?c="+carona+"&u="+cookieuser);     
+            if(sizechat==0||document.getElementById("hidsizechat").value>sizechat){                              
+                location.href='#bottomom';
+                sizechat=document.getElementById("hidsizechat").value;                
+            }
+        intel.xdk.notification.hideBusyIndicator();        
     }, 1500);
     activate_subpage("#chatsub");
 }
 
 function postchat(msg){
-        alert("http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat.asp?u="+cookieuser+"&c="+activecarona+"&msg="+msg);
-       $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat.asp?u="+cookieuser+"&c="+activecarona+"&msg="+msg,cache: false}).done(function(html){
-            //alert(html);        
+        //alert("http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat_2.asp?u="+cookieuser+"&c="+activecarona+"&msg="+msg);
+        var data={u:cookieuser,c:activecarona,msg:msg};       
+        $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postchat_2.asp",type: "POST",data:data,cache: false}).done(function(html){
+            //document.getElementById("txtchat").value="";        
         });
+        document.getElementById("txtchat").value="";        
+}
+
+function applycarona(carona){
+    intel.xdk.notification.showBusyIndicator();    
+    $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/applycarona_2.asp?u="+cookieuser+"&c="+carona,cache: false}).done(function(html){
+            //document.getElementById("txtchat").value="";        
+        });    
+        setTimeout(function(){         
+        getMinhasCaronas(cookieuser);    
+    activate_subpage("#minhascaronassub");    
+        },3000);
+    intel.xdk.notification.hideBusyIndicator();
 }
