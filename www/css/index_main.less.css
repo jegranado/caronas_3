@@ -507,6 +507,8 @@ label:empty {
 @media all {
   .header-bg {
     background-color: #008000;
+    background-image: linear-gradient(top, #008000 0%, #008000 0%, rgba(221, 42, 69, 0) 100%, rgba(221, 42, 69, 0) 100%);
+    background-image: -webkit-linear-gradient(top, #008000 0%, #008000 0%, rgba(221, 42, 69, 0) 100%, rgba(221, 42, 69, 0) 100%);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -892,6 +894,27 @@ label:empty {
     min-height: 50px;
   }
 }
+@media all and (min-width: 320px) {
+  .row-height-30 > .col > .content-area {
+    min-height: 100px;
+  }
+}
+@media all {
+  .google-maps-size {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-31 > .col > .content-area {
+    min-height: 35px;
+  }
+}
+@media all and (min-width: 320px) {
+  .row-height-32 > .col > .content-area {
+    min-height: 100px;
+  }
+}
 .uib_row_30:not(.cright) > .col {
   padding-right: 20px;
 }
@@ -908,16 +931,6 @@ label:empty {
   }
   .urow.cright > .col-0_12-12 {
     padding-left: 0px !important;
-  }
-}
-@media all and (min-width: 320px) {
-  .row-height-30 > .col > .content-area {
-    min-height: 100px;
-  }
-}
-@media all {
-  .google-maps-size {
-    height: 250px;
   }
 }
 .uib_row_31:not(.cright) > .col {
@@ -938,8 +951,21 @@ label:empty {
     padding-left: 0px !important;
   }
 }
-@media all and (min-width: 320px) {
-  .row-height-31 > .col > .content-area {
-    min-height: 35px;
+.uib_row_32:not(.cright) > .col {
+  padding-right: 20px;
+}
+.uib_row_32.cright > .col {
+  padding-left: 20px;
+}
+@media all {
+  .col-0_12-12 {
+    width: auto;
+    float: none !important;
+  }
+  .urow:not(.cright) > .col-0_12-12 {
+    padding-right: 0px !important;
+  }
+  .urow.cright > .col-0_12-12 {
+    padding-left: 0px !important;
   }
 }

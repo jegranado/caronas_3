@@ -136,6 +136,10 @@ var sizechat=0;
         {
          activate_subpage("#minhascaronassub"); 
         });
+        $(document).on("click", ".uib_w_49", function(evt)
+        {
+         activate_subpage("#minhascaronassub"); 
+        });
 }
  $(document).ready(register_event_handlers);
 })();
@@ -195,5 +199,17 @@ function applycarona(carona){
 }
 
 function map(carona){
-        activate_subpage("#mapsub");
+        
+        initialize();
+        activate_subpage("#pgmapsub");        
 }
+
+function initialize(){    
+          var map;
+            alert("mapa");
+          var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644)
+          };
+          map = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);
+        }
