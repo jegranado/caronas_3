@@ -2,6 +2,10 @@ var cookieuser;
 var activecarona;
 var timeout;
 var sizechat=0;
+var latme;
+var lonme;
+var map;
+var mkinterval;
 (function()
 {
  "use strict";
@@ -140,6 +144,12 @@ var sizechat=0;
         {
          activate_subpage("#minhascaronassub"); 
         });
+        
+        $(document).on("click", "#voltmap", function(evt)
+        {
+         activate_subpage("#minhascaronassub"); 
+         clearInterval(mkinterval);
+        });
 }
  $(document).ready(register_event_handlers);
 })();
@@ -201,15 +211,46 @@ function applycarona(carona){
 function map(carona){
         
         initialize();
-        activate_subpage("#pgmapsub");        
+        //alert(document.getElementById("mapcontainer").style.width);
+        document.getElementById("mapcontainer").style.width = screen.width + "px";
+        document.getElementById("mapcontainer").style.height = screen.height + "px";
+        activate_subpage("#pgmapsub"); 
+        mkinterval=setInterval(
+        function(){
+         var data={c:carona};       
+        $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getposition.asp?c="+carona,cache: false}).done(function(html){
+            //alert(html);
+            //<SET MARKERS>
+        });      
+        }
+        ,3500);
 }
 
 function initialize(){    
-          var map;
-            alert("mapa");
+          
+           // alert("mapa");
           var mapOptions = {
-            zoom: 8,
-            center: new google.maps.LatLng(-34.397, 150.644)
+            zoom: 15,
+            center: new google.maps.LatLng(latme, lonme),
+            disableDefaultUI: true
           };
           map = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);
+}
+
+function locateme(){
+     var suc = function(p){
+        //alert("geolocation success");
+        if (p.coords.latitude != undefined)
+        {
+            latme = p.coords.latitude;
+            lonme = p.coords.longitude;
+            var data={u:cookieuser,lat:latme,lon:lonme};
+            $.post("http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/postlocation.asp",data);
         }
+
+    };
+    
+    setInterval(function(){
+    intel.xdk.geolocation.getCurrentPosition(suc,null);
+    },3000);
+} 
