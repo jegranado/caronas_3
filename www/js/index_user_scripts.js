@@ -4,8 +4,9 @@ var timeout;
 var sizechat=0;
 var latme;
 var lonme;
-var map;
+var obmap;
 var mkinterval;
+var arrmarkers;
 (function()
 {
  "use strict";
@@ -150,6 +151,53 @@ var mkinterval;
          activate_subpage("#minhascaronassub"); 
          clearInterval(mkinterval);
         });
+        $(document).on("click", "#btncadastrar", function(evt)
+        {
+        /* your code goes here */ 
+            var ok=true;
+            
+            if(ok&&document.getElementById("txtcadnome").value.replace(" ","")==""){alert("Nome não pode estar em branco");ok=false;}
+            if(ok&&document.getElementById("txtcademail").value.replace(" ","")==""){alert("Email não pode estar em branco");ok=false;}
+            if(ok&&document.getElementById("txtcadcelular").value.replace(" ","")==""){alert("Celular não pode estar em branco");ok=false;}
+            if(ok&&document.getElementById("txtcadsenha").value.replace(" ","")==""){alert("Senha não pode estar em branco");ok=false;}            
+             if(ok&&document.getElementById("txtcadsenha").value!=document.getElementById("txtcadsenhab").value){
+                alert("A senha e sua confirmação precisam ser idênticas.");
+                ok=false;
+            }
+            
+            if(ok&&!document.getElementById("chkprometo").checked){
+                alert("Você precisa prometer que não vai usar este aplicativo dirigindo para prosseguir.");
+                ok=false;
+            }
+            
+            var data={
+                nome:document.getElementById("txtcadnome").value,
+                email:document.getElementById("txtcademail").value,
+                celular:document.getElementById("txtcadcelular").value,
+                senha:document.getElementById("txtcadsenha").value
+            };
+            var okk=true;
+            if(ok){
+            $.get("http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/cadastra.asp",data,function(retorno){
+                if(retorno.indexOf("jaexistente")>-1){
+                    alert("Email já cadastrado. Tente novamente.");
+                    okk=false;
+                }
+                
+            });
+            
+            }
+            if(okk){                document.getElementById("txtemail").value=document.getElementById("txtcademail").value;                            
+                activate_subpage("#mainsub");   
+                alert("Cadastro realizado com sucesso!");                      
+                document.getElementById("txtcadnome").value="";
+                document.getElementById("txtcademail").value="";
+                document.getElementById("txtcadcelular").value="";
+                document.getElementById("txtcadsenha").value="";
+            }
+            
+        });
+        
 }
  $(document).ready(register_event_handlers);
 })();
@@ -209,21 +257,22 @@ function applycarona(carona){
 }
 
 function map(carona){
-        
+        //alert(carona);
         initialize();
         //alert(document.getElementById("mapcontainer").style.width);
         document.getElementById("mapcontainer").style.width = screen.width + "px";
         document.getElementById("mapcontainer").style.height = screen.height + "px";
-        activate_subpage("#pgmapsub"); 
         mkinterval=setInterval(
         function(){
          var data={c:carona};       
         $.ajax({url:"http://ec2-54-191-186-213.us-west-2.compute.amazonaws.com:8033/ws/getposition.asp?c="+carona,cache: false}).done(function(html){
             //alert(html);
-            //<SET MARKERS>
+            setMarkers(html);
         });      
         }
         ,3500);
+        
+        activate_subpage("#pgmapsub"); 
 }
 
 function initialize(){    
@@ -234,7 +283,7 @@ function initialize(){
             center: new google.maps.LatLng(latme, lonme),
             disableDefaultUI: true
           };
-          map = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);
+          obmap = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);
 }
 
 function locateme(){
@@ -254,3 +303,26 @@ function locateme(){
     intel.xdk.geolocation.getCurrentPosition(suc,null);
     },3000);
 } 
+
+function setMarkers(data){
+    arrda=null;
+    var arrda = data.split("//");
+    var aux;
+    for(x in arrda){
+        aux=arrda[x].split("|");
+        posi = new google.maps.LatLng(aux[2],aux[3]);
+        
+        if(aux[1]==1){
+            image="./images/car.png";
+        }else{
+            image="./images/person.png";
+        }
+        
+        arrmarkers=new google.maps.Marker({
+        position: posi,
+        map: obmap,
+        title:aux[0],
+        icon: image
+        });
+    }
+}
