@@ -16,6 +16,7 @@
 			input, textarea  { -webkit-user-select:text; }
 		</style>
 		<script src="intelxdk.js"></script>
+        <!--<script src="appmobi.js"></script>-->
 		<script src="xhr.js"></script>
 		<script src="cordova.js"></script>
 		<script type="application/javascript" src="js/jquery.min.js"></script>
@@ -23,21 +24,24 @@
 		<script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 		<script type="application/javascript" src="js/index_user_scripts.js"></script>
 		<script type="application/javascript" src="js/bs_subpage.js"></script>
+        <script type="application/javascript" src="js/pushmobi.js"></script>
 		<script src="http://debug-software.intel.com/target/target-script-min.js#Tu6v8qD4WmoR8ElejDjiBWC8ZLcuHO6r6gXzhTqRSYA"></script>
 		<script type="text/javascript">
 			/* Intel native bridge is available */
-            var cookieuser;
+            var cookieuser=null;
 			var onDeviceReady=function(){
 			//hide splash screen
 			intel.xdk.device.hideSplashScreen();
             cookieuser=intel.xdk.cache.getCookie("cookieuser");
                 if(cookieuser){
+                    pushMobi.init();
                     activate_subpage("#tiposub");   
                 }  
                 
-                
+             
 			};
             locateme();
+            intel.xdk.device.setRotateOrientation("portrait");
             document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 		</script>
 		<script type="application/javascript" src="xdk/appdesigner/js/rest-of-space.js"></script>

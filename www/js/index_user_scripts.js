@@ -6,7 +6,7 @@ var latme;
 var lonme;
 var obmap;
 var mkinterval;
-var arrmarkers;
+var arrmarkers=new Array();
 (function()
 {
  "use strict";
@@ -258,6 +258,7 @@ function applycarona(carona){
 
 function map(carona){
         //alert(carona);
+        arrmarkers =new Array();
         initialize();
         //alert(document.getElementById("mapcontainer").style.width);
         document.getElementById("mapcontainer").style.width = screen.width + "px";
@@ -273,17 +274,18 @@ function map(carona){
         ,3500);
         
         activate_subpage("#pgmapsub"); 
+        google.maps.event.trigger(obmap, 'resize');
+        obmap.setCenter(new google.maps.LatLng(latme, lonme));
 }
 
 function initialize(){    
-          
-           // alert("mapa");
+          // alert("mapa");
           var mapOptions = {
             zoom: 15,
             center: new google.maps.LatLng(latme, lonme),
             disableDefaultUI: true
           };
-          obmap = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);
+          obmap = new google.maps.Map(document.getElementById('mapcontainer'),mapOptions);          
 }
 
 function locateme(){
@@ -305,7 +307,9 @@ function locateme(){
 } 
 
 function setMarkers(data){
-    arrda=null;
+    
+    
+    
     var arrda = data.split("//");
     var aux;
     for(x in arrda){
@@ -318,11 +322,17 @@ function setMarkers(data){
             image="./images/person.png";
         }
         
-        arrmarkers=new google.maps.Marker({
-        position: posi,
-        map: obmap,
-        title:aux[0],
-        icon: image
-        });
+        if(arrmarkers[x]==null){
+            var marker=new google.maps.Marker({
+            position: posi,
+            map: obmap,
+            title:aux[0],
+            icon: image
+            });
+        
+        arrmarkers[x]=marker;
+        }else{
+            arrmarkers[x].setPosition(posi);   
+        }
     }
 }
