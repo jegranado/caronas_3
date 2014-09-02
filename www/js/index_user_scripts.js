@@ -71,8 +71,8 @@ var arrmarkers=new Array();
          activate_page("#tipo"); 
         });
         $(document).on("click", "#ofereco_carona", function(evt)
-        {
-         activate_subpage("#ofereco_caronasub"); 
+        {       
+            activate_subpage("#ofereco_caronasub"); 
         });
         
         $(document).on("click", ".uib_w_29", function(evt)
